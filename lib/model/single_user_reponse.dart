@@ -9,7 +9,7 @@ class SingleUserResponse{
   SingleUserResponse();
 
   @JsonKey(name : "data")
-  User user;
+  User? user;
 
   factory SingleUserResponse.fromJson(Map<String, dynamic> json) => _$SingleUserResponseFromJson(json);
   Map<String, dynamic> toJson() => _$SingleUserResponseToJson(this);
