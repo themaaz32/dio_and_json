@@ -33,15 +33,18 @@ class HttpService{
 
   initializeInterceptors(){
     _dio.interceptors.add(InterceptorsWrapper(
-      onError: (error){
-        print(error.message);
+      onError: (DioError e, handler) {
+        print(e.message);
+        return handler.next(e);
       },
-      onRequest: (request){
-        print("${request.method} ${request.path}");
+      onRequest: (options, handler) {
+        print("${options.method} ${options.path}");
+        return handler.next(options); 
       },
-      onResponse: (response){
+      onResponse: (response, handler) {
         print(response.data);
-      }
+        return handler.next(response);
+      },
     ));
   }
 }
