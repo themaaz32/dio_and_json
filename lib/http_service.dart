@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 
-
-
 class HttpService{
   Dio _dio;
 
@@ -14,7 +12,6 @@ class HttpService{
 
     initializeInterceptors();
   }
-
 
   Future<Response> getRequest(String endPoint) async{
     Response response;
@@ -29,7 +26,6 @@ class HttpService{
     return response;
 
   }
-
 
   initializeInterceptors(){
     _dio.interceptors.add(InterceptorsWrapper(
