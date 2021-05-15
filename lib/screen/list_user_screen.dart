@@ -31,7 +31,7 @@ class _ListUserScreenState extends State<ListUserScreen> {
       if (response.statusCode == 200) {
         setState(() {
           listUserResponse = ListUserResponse.fromJson(response.data);
-          users = listUserResponse.users;
+          users = listUserResponse.users!;
         });
       } else {
         print("There is some problem status code not 200");
