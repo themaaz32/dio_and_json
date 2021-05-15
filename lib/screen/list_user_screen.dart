@@ -13,11 +13,11 @@ class ListUserScreen extends StatefulWidget {
 class _ListUserScreenState extends State<ListUserScreen> {
   bool isLoading = false;
 
-  HttpService http;
+  late HttpService http;
 
-  ListUserResponse listUserResponse;
+  late ListUserResponse listUserResponse;
 
-  List<User> users;
+  late List<User> users;
 
   Future getListUser() async {
     Response response;
@@ -31,7 +31,7 @@ class _ListUserScreenState extends State<ListUserScreen> {
       if (response.statusCode == 200) {
         setState(() {
           listUserResponse = ListUserResponse.fromJson(response.data);
-          users = listUserResponse.users;
+          users = listUserResponse.users!;
         });
       } else {
         print("There is some problem status code not 200");
@@ -65,9 +65,9 @@ class _ListUserScreenState extends State<ListUserScreen> {
                     final user = users[index];
 
                     return ListTile(
-                      title: Text(user.firstName),
-                      leading: Image.network(user.avatar),
-                      subtitle: Text(user.email),
+                      title: Text(user.firstName!),
+                      leading: Image.network(user.avatar!),
+                      subtitle: Text(user.email!),
                     );
                   },
                   itemCount: users.length,

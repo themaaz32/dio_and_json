@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 
-
-
 class HttpService{
-  Dio _dio;
+  late Dio _dio;
 
   final baseUrl = "https://reqres.in/";
 
@@ -14,7 +12,6 @@ class HttpService{
 
     initializeInterceptors();
   }
-
 
   Future<Response> getRequest(String endPoint) async{
     Response response;
@@ -30,18 +27,20 @@ class HttpService{
 
   }
 
-
   initializeInterceptors(){
     _dio.interceptors.add(InterceptorsWrapper(
-      onError: (error){
-        print(error.message);
+      onError: (DioError e, handler) {
+        print(e.message);
+        return handler.next(e);
       },
-      onRequest: (request){
-        print("${request.method} ${request.path}");
+      onRequest: (options, handler) {
+        print("${options.method} ${options.path}");
+        return handler.next(options); 
       },
-      onResponse: (response){
+      onResponse: (response, handler) {
         print(response.data);
-      }
+        return handler.next(response);
+      },
     ));
   }
 }
