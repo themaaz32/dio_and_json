@@ -10,10 +10,10 @@ class SingleUserScreen extends StatefulWidget {
 }
 
 class _SingleUserScreenState extends State<SingleUserScreen> {
-  HttpService http;
+  late HttpService http;
 
-  SingleUserResponse singleUserResponse;
-  User user;
+  late SingleUserResponse singleUserResponse;
+  late User user;
 
   bool isLoading = false;
 
@@ -29,7 +29,7 @@ class _SingleUserScreenState extends State<SingleUserScreen> {
       if (response.statusCode == 200) {
         setState(() {
           singleUserResponse = SingleUserResponse.fromJson(response.data);
-          user = singleUserResponse.user;
+          user = singleUserResponse.user!;
         });
       } else {
         print("There is some problem status code not 200");
@@ -63,7 +63,7 @@ class _SingleUserScreenState extends State<SingleUserScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(user.avatar),
+                  Image.network(user.avatar!),
                   Container(height: 16,),
                   Text("Hello, ${user.firstName} ${user.lastName}")
                 ],
