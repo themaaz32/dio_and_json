@@ -5,19 +5,19 @@ part 'user.g.dart';
 @JsonSerializable()
 class User {
   @JsonKey(name : "id")
-  int id;
+  int? id;
 
   @JsonKey(name : "email")
-  String email;
+  String? email;
 
   @JsonKey(name : "first_name")
-  String firstName;
+  String? firstName;
 
   @JsonKey(name : "last_name")
-  String lastName;
+  String? lastName;
 
   @JsonKey(name : "avatar")
-  String avatar;
+  String? avatar;
 
   User();
 
