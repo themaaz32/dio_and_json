@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class HttpService{
-  Dio _dio;
+  late Dio _dio;
 
   final baseUrl = "https://reqres.in/";
 
